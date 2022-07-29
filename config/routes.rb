@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   end
   devise_for :users
   devise_for :admins
-    
+  devise_scope :user do
+    get 'users/sign_out', to: 'devise/sessions#destroy'
+  end
+  devise_scope :admin do
+    get 'admins/sign_out', to: 'devise/sessions#destroy'
+  end
+
   get 'inicio', to: 'site/welcome#index'
   root to: 'site/welcome#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
